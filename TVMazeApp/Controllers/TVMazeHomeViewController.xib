@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TVMazeHomeViewController" customModule="TVMazeApp" customModuleProvider="target">
             <connections>
                 <outlet property="nextPageButton" destination="5J3-Pu-wQm" id="6xv-RL-Qbm"/>
+                <outlet property="previousPageButton" destination="N2l-PE-P7O" id="LGa-Fv-pAo"/>
                 <outlet property="reloadButton" destination="Hqj-Ih-H2k" id="j5Y-LQ-37A"/>
                 <outlet property="resultTableView" destination="T9I-7H-wUi" id="qy1-zt-tBE"/>
                 <outlet property="searchButton" destination="6KI-0n-ulV" id="DCz-hS-Lzd"/>
@@ -47,16 +48,31 @@
                     <buttonConfiguration key="configuration" style="plain" title="Search"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5J3-Pu-wQm">
-                    <rect key="frame" x="280" y="630" width="102" height="35"/>
+                    <rect key="frame" x="309" y="630" width="45" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Next Page"/>
+                    <buttonConfiguration key="configuration" style="plain" title="&gt;&gt;"/>
+                    <connections>
+                        <action selector="loadNextPage:" destination="-1" eventType="touchUpInside" id="pVM-DH-PYn"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqj-Ih-H2k">
-                    <rect key="frame" x="10" y="630" width="77" height="35"/>
+                    <rect key="frame" x="158" y="630" width="77" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Reload"/>
+                    <connections>
+                        <action selector="reloadTable:" destination="-1" eventType="touchUpInside" id="Gqv-iR-F44"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2l-PE-P7O">
+                    <rect key="frame" x="45" y="630" width="45" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="&lt;&lt;"/>
+                    <connections>
+                        <action selector="loadPreviousPage:" destination="-1" eventType="touchUpInside" id="zC4-Q4-jc0"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

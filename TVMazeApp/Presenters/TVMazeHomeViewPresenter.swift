@@ -7,9 +7,10 @@
 
 import UIKit
 
+// TODO: Move protocols to their own file and layer
 protocol TVMazeHomeViewPresenterProtocol {
     func setupView(view: TVMazeHomeViewControllerProtocol)
-    func fetchAndPopulate(tableView: UITableView)
+    func fetchAndPopulate(tableView: UITableView, pageNumber: Int)
     func tableRowCount() -> Int
     func setupCell(cell: TVMazeShowCellTableViewCellProtocol, indexPath: IndexPath)
 }
@@ -19,7 +20,6 @@ class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
     let service: TVMazeNetworkServiceProtocol
     
     private var showsArray: [TVMazeShowModel]?
-    private var pageNumber: Int = 0
     
     init(delegate: TVMazeHomeViewControllerProtocol, service: TVMazeNetworkServiceProtocol) {
         self.delegate = delegate
@@ -29,7 +29,7 @@ class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
     func setupView(view: TVMazeHomeViewControllerProtocol) {
     }
     
-    func fetchAndPopulate(tableView: UITableView) {
+    func fetchAndPopulate(tableView: UITableView, pageNumber: Int) {
         service.fetchAllShows(page: pageNumber) {[weak self] (model, err) in
             guard let self = self else {return}
             

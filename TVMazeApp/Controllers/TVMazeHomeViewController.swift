@@ -20,18 +20,52 @@ class TVMazeHomeViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var nextPageButton: UIButton!
-    
+    @IBOutlet weak var previousPageButton: UIButton!
+
+    private var pageNumber: Int = 0
+
+    // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTable()
         setUpViewPresenter()
-        viewPresenter?.fetchAndPopulate(tableView: resultTableView)
+        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
     }
     
-    func setUpTable() {
+    // MARK: Private Methods
+    private func setUpTable() {
         resultTableView.dataSource = self
         resultTableView.delegate = self
         resultTableView.register(UINib(nibName: "TVMazeShowCellTableViewCell", bundle: nil), forCellReuseIdentifier: "showcell")
+    }
+    
+    private func validateTableArrows() {
+        if pageNumber < 1 {
+            previousPageButton.isEnabled = false
+        } else {
+            previousPageButton.isEnabled = true
+        }
+    }
+    
+    // MARK: Outlets
+    @IBAction func loadNextPage(_ sender: Any) {
+        // TODO: Handle loading better
+        pageNumber += 1
+        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        validateTableArrows()
+    }
+    
+    @IBAction func loadPreviousPage(_ sender: Any) {
+        pageNumber -= 1
+        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        validateTableArrows()
+
+    }
+    
+    @IBAction func reloadTable(_ sender: Any) {
+        pageNumber = 0
+        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        validateTableArrows()
     }
 }
 
@@ -64,6 +98,6 @@ extension TVMazeHomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func handleError(error: TVMazeServiceError, comments: String?) {
-        // TODO: Handle view without content disabling components or something else?
+        // TODO: Handle view without content disabling components or error view for example
     }
 }
