@@ -9,8 +9,8 @@ import UIKit
 
 // TODO: Move protocols to their own file and layer
 protocol TVMazeHomeViewPresenterProtocol {
-    func setupView(view: TVMazeHomeViewControllerProtocol)
-    func fetchAndPopulate(tableView: UITableView, pageNumber: Int)
+    func fetchAllAndPopulate(tableView: UITableView, pageNumber: Int)
+    func fetchShowAndPopulate(tableView: UITableView, showName: String)
     func tableRowCount() -> Int
     func setupCell(cell: TVMazeShowCellTableViewCellProtocol, indexPath: IndexPath)
 }
@@ -26,18 +26,33 @@ class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
         self.service = service
     }
     
-    func setupView(view: TVMazeHomeViewControllerProtocol) {
-    }
-    
-    func fetchAndPopulate(tableView: UITableView, pageNumber: Int) {
+    func fetchAllAndPopulate(tableView: UITableView, pageNumber: Int) {
         service.fetchAllShows(page: pageNumber) {[weak self] (model, err) in
             guard let self = self else {return}
-            
             if let modelArray = model {
+                self.clearTableView()
                 self.showsArray = modelArray
-                DispatchQueue.main.async {
-                    self.delegate.reloadView()
+                self.delegate.reloadView()
+            } else {
+                if let error = err {
+                    self.delegate.handleError(error: error, comments: nil)
+                } else {
+                    self.delegate.handleError(error: .unknown, comments: "Something else happened")
                 }
+            }
+        }
+    }
+
+    func fetchShowAndPopulate(tableView: UITableView, showName: String) {
+        service.fetchShow(name: showName) {[weak self] (model, err) in
+            guard let self = self else {return}
+            if let modelArray = model {
+                self.clearTableView()
+                let showsResponse = modelArray.map({(response: TVMazeNetworkResponseModel) -> TVMazeShowModel in
+                    response.show
+                })
+                self.showsArray = showsResponse
+                self.delegate.reloadView()
             } else {
                 if let error = err {
                     self.delegate.handleError(error: error, comments: nil)
@@ -79,7 +94,13 @@ class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
                     }
                 }
             }
-            
         }
+    }
+    
+    // MARK: Private methods
+    
+    private func clearTableView() {
+        self.showsArray = nil
+        self.delegate.reloadView()
     }
 }

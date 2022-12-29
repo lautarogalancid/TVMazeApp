@@ -15,6 +15,7 @@
                 <outlet property="reloadButton" destination="Hqj-Ih-H2k" id="j5Y-LQ-37A"/>
                 <outlet property="resultTableView" destination="T9I-7H-wUi" id="qy1-zt-tBE"/>
                 <outlet property="searchButton" destination="6KI-0n-ulV" id="DCz-hS-Lzd"/>
+                <outlet property="searchTextField" destination="n8V-GJ-UwP" id="RHL-mr-Ga5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -46,6 +47,9 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                    <connections>
+                        <action selector="searchShows:" destination="-1" eventType="touchUpInside" id="qno-Uc-Mj8"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5J3-Pu-wQm">
                     <rect key="frame" x="309" y="630" width="45" height="35"/>
@@ -56,15 +60,6 @@
                         <action selector="loadNextPage:" destination="-1" eventType="touchUpInside" id="pVM-DH-PYn"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqj-Ih-H2k">
-                    <rect key="frame" x="158" y="630" width="77" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Reload"/>
-                    <connections>
-                        <action selector="reloadTable:" destination="-1" eventType="touchUpInside" id="Gqv-iR-F44"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2l-PE-P7O">
                     <rect key="frame" x="45" y="630" width="45" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -72,6 +67,15 @@
                     <buttonConfiguration key="configuration" style="plain" title="&lt;&lt;"/>
                     <connections>
                         <action selector="loadPreviousPage:" destination="-1" eventType="touchUpInside" id="zC4-Q4-jc0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqj-Ih-H2k">
+                    <rect key="frame" x="151" y="630" width="90" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Fetch All"/>
+                    <connections>
+                        <action selector="reloadTable:" destination="-1" eventType="touchUpInside" id="Gqv-iR-F44"/>
                     </connections>
                 </button>
             </subviews>

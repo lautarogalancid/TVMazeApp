@@ -25,7 +25,7 @@ final class TVMazeNetworkServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Fetch Request")
         
-        sut.fetchAllShows(page: 0) {(model, err) in
+        sut.fetchShows(param: String(0), fetchType: .fetchAll) {(model, err) in
             let out: TVMazeShowModel = model![0]
             XCTAssertEqual(out.name, "Under the Dome")
             expectation.fulfill()
@@ -34,7 +34,7 @@ final class TVMazeNetworkServiceTests: XCTestCase {
         self.wait(for: [expectation], timeout: 1)
     }
     
-    func testWhenFetchingAllShows_ReturnsInvalidResponse() {
+    func testWhenFetchingAllShows_ReturnsParsingError() {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [MockURLProtocol.self]
         let urlSession = URLSession(configuration: config)
@@ -45,7 +45,7 @@ final class TVMazeNetworkServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Invalid or empty Json received")
         
-        sut.fetchAllShows(page: 0) {(model, err) in
+        sut.fetchShows(param: String(0), fetchType: .fetchAll) {(model, err) in
             XCTAssertNil(model)
             XCTAssertEqual(err, TVMazeServiceError.responseParsingError)
             expectation.fulfill()

@@ -21,18 +21,26 @@ class TVMazeHomeViewController: UIViewController {
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var nextPageButton: UIButton!
     @IBOutlet weak var previousPageButton: UIButton!
-
+    @IBOutlet weak var searchTextField: UITextField!
+    
     private var pageNumber: Int = 0
 
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
         setUpTable()
         setUpViewPresenter()
-        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        viewPresenter?.fetchAllAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
     }
     
     // MARK: Private Methods
+    
+    private func setUpView() {
+        // TODO: Localized strings for each button and label instead of hardcoded string
+        searchTextField.clearButtonMode = .whileEditing
+    }
+
     private func setUpTable() {
         resultTableView.dataSource = self
         resultTableView.delegate = self
@@ -49,29 +57,35 @@ class TVMazeHomeViewController: UIViewController {
     
     // MARK: Outlets
     @IBAction func loadNextPage(_ sender: Any) {
-        // TODO: Handle loading better
+        // TODO: Handle cell loading
         pageNumber += 1
-        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        viewPresenter?.fetchAllAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
         validateTableArrows()
     }
     
     @IBAction func loadPreviousPage(_ sender: Any) {
         pageNumber -= 1
-        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        viewPresenter?.fetchAllAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
         validateTableArrows()
 
     }
     
     @IBAction func reloadTable(_ sender: Any) {
         pageNumber = 0
-        viewPresenter?.fetchAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
+        viewPresenter?.fetchAllAndPopulate(tableView: resultTableView, pageNumber: pageNumber)
         validateTableArrows()
+    }
+    
+    @IBAction func searchShows(_ sender: Any) {
+        viewPresenter?.fetchShowAndPopulate(tableView: resultTableView, showName: searchTextField.text ?? "")
     }
 }
 
 extension TVMazeHomeViewController: TVMazeHomeViewControllerProtocol {
     func reloadView() {
-        self.resultTableView.reloadData()
+        DispatchQueue.main.async {
+            self.resultTableView.reloadData()
+        }
     }
     
     func setUpViewPresenter() {

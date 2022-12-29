@@ -9,6 +9,7 @@ import UIKit
 
 protocol TVMazeNetworkServiceProtocol {
     func fetchAllShows(page: Int, completion: @escaping ([TVMazeShowModel]?, TVMazeServiceError?) -> Void)
+    func fetchShow(name: String, completion: @escaping ([TVMazeNetworkResponseModel]?, TVMazeServiceError?) -> Void)
     func downloadImage(imageUrl: String?, completion: @escaping (UIImage?, TVMazeServiceError?) -> Void)
 }
 
@@ -38,6 +39,25 @@ class TVMazeNetworkService: TVMazeNetworkServiceProtocol {
         task.resume()
     }
     
+    func fetchShow(name: String, completion: @escaping ([TVMazeNetworkResponseModel]?, TVMazeServiceError?) -> Void) {
+        let parsedQuery = name.replacingOccurrences(of: " ", with: "%20")
+        let urlString = "\(baseUrl)/search/shows?q=\(parsedQuery)"
+        guard let requestUrl = URL(string: urlString) else {
+            completion(nil, TVMazeServiceError.responseInvalidURL)
+            return
+        }
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        let task = session.dataTask(with: request) { data, response, error in
+            if let data = data, let responseModel = try? JSONDecoder().decode([TVMazeNetworkResponseModel].self, from: data) {
+                completion(responseModel, nil)
+            } else {
+                completion(nil, TVMazeServiceError.responseParsingError)
+            }
+        }
+        task.resume()
+    }
+
     func downloadImage(imageUrl: String?, completion: @escaping (UIImage?, TVMazeServiceError?) -> Void) {
         if let validImageUrl = imageUrl {
             guard let requestUrl = URL(string: validImageUrl) else {
