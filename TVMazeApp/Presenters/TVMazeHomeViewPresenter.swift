@@ -13,11 +13,12 @@ protocol TVMazeHomeViewPresenterProtocol {
     func fetchShowAndPopulate(tableView: UITableView, showName: String)
     func tableRowCount() -> Int
     func setupCell(cell: TVMazeShowCellTableViewCellProtocol, indexPath: IndexPath)
+    func PresentDetailedView(index: IndexPath)
 }
 
 class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
-    let delegate: TVMazeHomeViewControllerProtocol
-    let service: TVMazeNetworkServiceProtocol
+    private let delegate: TVMazeHomeViewControllerProtocol
+    private let service: TVMazeNetworkServiceProtocol
     
     private var showsArray: [TVMazeShowModel]?
     
@@ -93,6 +94,17 @@ class TVMazeHomeViewPresenter: TVMazeHomeViewPresenterProtocol {
                         self.delegate.handleError(error: .unknown, comments: "Something else happened")
                     }
                 }
+            }
+        }
+    }
+    
+    func PresentDetailedView(index: IndexPath) {
+        if let models = showsArray {
+            let selectedModel = models[index.row]
+            let presenter = TVMazeShowDetailsPresenter(model: selectedModel, service: service)
+            if let detailView = presenter.createView() as? UIViewController {
+                
+                self.delegate.showDetailView(view: detailView)
             }
         }
     }

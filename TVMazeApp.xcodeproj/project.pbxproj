@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9733E17C295D30D000C248A8 /* TVMazeShowDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733E17B295D30D000C248A8 /* TVMazeShowDetailsPresenter.swift */; };
 		9738B301295B8BE200D901CD /* TVMazeHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9738B2FF295B8BE200D901CD /* TVMazeHomeViewController.swift */; };
 		9738B302295B8BE200D901CD /* TVMazeHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9738B300295B8BE200D901CD /* TVMazeHomeViewController.xib */; };
 		9738B307295B8E9800D901CD /* TVMazeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9738B305295B8E9800D901CD /* TVMazeTabBarViewController.swift */; };
@@ -20,6 +21,8 @@
 		97C13C77295C1EF20087642E /* TVMazeHomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C13C76295C1EF10087642E /* TVMazeHomeViewPresenter.swift */; };
 		97C13C7C295C224E0087642E /* TVMazeShowCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C13C7A295C224E0087642E /* TVMazeShowCellTableViewCell.swift */; };
 		97C13C7D295C224E0087642E /* TVMazeShowCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C13C7B295C224E0087642E /* TVMazeShowCellTableViewCell.xib */; };
+		97C13C80295D2D0A0087642E /* TVMazeShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C13C7E295D2D0A0087642E /* TVMazeShowDetailsViewController.swift */; };
+		97C13C81295D2D0A0087642E /* TVMazeShowDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97C13C7F295D2D0A0087642E /* TVMazeShowDetailsViewController.xib */; };
 		97F4EB372959A9B000C71D71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F4EB362959A9B000C71D71 /* AppDelegate.swift */; };
 		97F4EB392959A9B000C71D71 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F4EB382959A9B000C71D71 /* SceneDelegate.swift */; };
 		97F4EB412959A9B000C71D71 /* TVMazeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97F4EB3F2959A9B000C71D71 /* TVMazeApp.xcdatamodeld */; };
@@ -53,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9733E17B295D30D000C248A8 /* TVMazeShowDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeShowDetailsPresenter.swift; sourceTree = "<group>"; };
 		9738B2FF295B8BE200D901CD /* TVMazeHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeHomeViewController.swift; sourceTree = "<group>"; };
 		9738B300295B8BE200D901CD /* TVMazeHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVMazeHomeViewController.xib; sourceTree = "<group>"; };
 		9738B305295B8E9800D901CD /* TVMazeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeTabBarViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		97C13C76295C1EF10087642E /* TVMazeHomeViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeHomeViewPresenter.swift; sourceTree = "<group>"; };
 		97C13C7A295C224E0087642E /* TVMazeShowCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeShowCellTableViewCell.swift; sourceTree = "<group>"; };
 		97C13C7B295C224E0087642E /* TVMazeShowCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVMazeShowCellTableViewCell.xib; sourceTree = "<group>"; };
+		97C13C7E295D2D0A0087642E /* TVMazeShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeShowDetailsViewController.swift; sourceTree = "<group>"; };
+		97C13C7F295D2D0A0087642E /* TVMazeShowDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVMazeShowDetailsViewController.xib; sourceTree = "<group>"; };
 		97F4EB332959A9B000C71D71 /* TVMazeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVMazeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F4EB362959A9B000C71D71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97F4EB382959A9B000C71D71 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +125,8 @@
 				9738B306295B8E9800D901CD /* TVMazeTabBarViewController.xib */,
 				97C13C7A295C224E0087642E /* TVMazeShowCellTableViewCell.swift */,
 				97C13C7B295C224E0087642E /* TVMazeShowCellTableViewCell.xib */,
+				97C13C7E295D2D0A0087642E /* TVMazeShowDetailsViewController.swift */,
+				97C13C7F295D2D0A0087642E /* TVMazeShowDetailsViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				97C13C76295C1EF10087642E /* TVMazeHomeViewPresenter.swift */,
+				9733E17B295D30D000C248A8 /* TVMazeShowDetailsPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 				97F4EB462959A9B000C71D71 /* LaunchScreen.storyboard in Resources */,
 				9738B308295B8E9800D901CD /* TVMazeTabBarViewController.xib in Resources */,
 				97F4EB432959A9B000C71D71 /* Assets.xcassets in Resources */,
+				97C13C81295D2D0A0087642E /* TVMazeShowDetailsViewController.xib in Resources */,
 				97C13C7D295C224E0087642E /* TVMazeShowCellTableViewCell.xib in Resources */,
 				9738B302295B8BE200D901CD /* TVMazeHomeViewController.xib in Resources */,
 			);
@@ -373,10 +383,12 @@
 				97F4EB6E2959AA0000C71D71 /* TVMazeNetworkResponseModel.swift in Sources */,
 				97F4EB372959A9B000C71D71 /* AppDelegate.swift in Sources */,
 				97F4EB702959AA0000C71D71 /* TVMazeShowModel.swift in Sources */,
+				9733E17C295D30D000C248A8 /* TVMazeShowDetailsPresenter.swift in Sources */,
 				97F4EB6F2959AA0000C71D71 /* TVMazeNetworkError.swift in Sources */,
 				97F4EB412959A9B000C71D71 /* TVMazeApp.xcdatamodeld in Sources */,
 				9738B307295B8E9800D901CD /* TVMazeTabBarViewController.swift in Sources */,
 				97F4EB392959A9B000C71D71 /* SceneDelegate.swift in Sources */,
+				97C13C80295D2D0A0087642E /* TVMazeShowDetailsViewController.swift in Sources */,
 				97F4EB722959AA1000C71D71 /* TVMazeNetworkService.swift in Sources */,
 				97C13C77295C1EF20087642E /* TVMazeHomeViewPresenter.swift in Sources */,
 			);

@@ -11,6 +11,7 @@ protocol TVMazeHomeViewControllerProtocol {
     func handleError(error: TVMazeServiceError, comments: String?)
     func reloadView()
     func setUpViewPresenter()
+    func showDetailView(view: UIViewController)
 }
 
 class TVMazeHomeViewController: UIViewController {
@@ -81,6 +82,7 @@ class TVMazeHomeViewController: UIViewController {
     }
 }
 
+// MARK: TVMazeHomeViewControllerProtocol
 extension TVMazeHomeViewController: TVMazeHomeViewControllerProtocol {
     func reloadView() {
         DispatchQueue.main.async {
@@ -94,8 +96,17 @@ extension TVMazeHomeViewController: TVMazeHomeViewControllerProtocol {
             viewPresenter = TVMazeHomeViewPresenter(delegate: self, service: service)
         }
     }
+    
+    func showDetailView(view: UIViewController) {
+        self.present(view, animated: false)
+    }
+    
+    func handleError(error: TVMazeServiceError, comments: String?) {
+        // TODO: Handle view without content disabling components or error view for example
+    }
 }
 
+// MARK: UITableView
 extension TVMazeHomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let presenter = viewPresenter {
@@ -111,7 +122,7 @@ extension TVMazeHomeViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableViewCell()
     }
     
-    func handleError(error: TVMazeServiceError, comments: String?) {
-        // TODO: Handle view without content disabling components or error view for example
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewPresenter?.PresentDetailedView(index: indexPath)
     }
 }
